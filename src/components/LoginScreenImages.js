@@ -79,6 +79,9 @@ class LoginScreenImages extends React.Component {
   render() {
     return (
       <div className="image-container">
+        <div className="image-container__text">
+          Take your farming an extra mile...
+        </div>
         <div className="image-container__image">
           <IconButton
             className={this.props.classes.imageButtton}

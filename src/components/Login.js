@@ -10,6 +10,7 @@ import {
 import "./Login.scss";
 import LoginScreenImages from "./LoginScreenImages";
 import { Visibility, VisibilityOff } from "@material-ui/icons";
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles({
   button: {
@@ -48,18 +49,19 @@ const useStyles = makeStyles({
   },
 });
 
-const Login = () => {
+const Login = (props) => {
   const [values, setValues] = useState({
     username: "",
     password: "",
     showPassword: false,
   });
 
+  const history = useHistory();
+
   const submitForm = (e) => {
     e.preventDefault();
     //console.log("Form submitted!!");
-
-    alert(`username: ${values.username}, password: ${values.password}`);
+    props.history.push("/feed");
   };
 
   const handleToggle = () => {
