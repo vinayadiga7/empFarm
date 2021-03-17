@@ -4,6 +4,8 @@ import NavBar from "./NavBar";
 import Profile from "./Profile";
 import PersonalFeed from "./PersonalFeed";
 import Login from "./Login";
+import Signup from "./Signup";
+import "./css/main.css";
 
 class Home extends Component {
   render() {
@@ -14,6 +16,7 @@ class Home extends Component {
           <Route path="/" exact component={Login} />
           <Route path="/feed" component={PersonalFeed} />
           <Route path="/profile" component={Profile} />
+          <Route path="/signup" component={Signup} />
         </Switch>
       </Router>
     );

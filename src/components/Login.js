@@ -7,10 +7,9 @@ import {
   IconButton,
   Grid,
 } from "@material-ui/core";
-import "./Login.scss";
 import LoginScreenImages from "./LoginScreenImages";
 import { Visibility, VisibilityOff } from "@material-ui/icons";
-import { useHistory } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 
 const useStyles = makeStyles({
   button: {
@@ -121,6 +120,9 @@ const Login = (props) => {
             {" "}
             Login
           </Button>
+          <NavLink style={{ marginTop: "1rem" }} to="/signup">
+            New User? Create new account
+          </NavLink>
         </form>
       </Grid>
     </Grid>
