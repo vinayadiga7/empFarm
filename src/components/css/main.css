@@ -1,3 +1,15 @@
+body {
+  box-sizing: border-box;
+}
+
+.login-form-container {
+  display: flex;
+  height: 100%;
+  width: 50%;
+  justify-content: center;
+  align-items: center;
+}
+
 .container {
   width: 60%;
   padding: 3rem 3rem;
@@ -5,34 +17,49 @@
   box-shadow: 0 1rem 2rem #000000ce;
   display: flex;
   flex-direction: column;
-  margin: 10rem auto;
 }
 
 .form-container {
-  margin-top: 3rem;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 5px;
-  direction: column;
-  justify-content: flex-start;
+  margin: 3rem 0;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 1rem 2rem #797676ce;
 }
 .form-container__item {
   margin-bottom: 2rem;
-  grid-column: 2/4;
   position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.form-container__logo {
+  box-sizing: border-box;
+  display: block;
+  background-color: #00b224;
+  padding: 1rem;
+  font-size: 3rem;
+  color: white;
+  text-align: center;
+  width: 100%;
 }
 
 .textfield {
   font-size: 1.6rem;
   color: #3d3c3c;
   font-weight: 500;
-  padding: 1rem;
+  padding: 1.5rem;
   padding-bottom: 0.5rem;
   outline: none;
   border: none;
   border-bottom: 1px solid black;
   width: 70%;
   transition: border-bottom 0.2s ease-in-out;
+  background-color: #ddd1d1;
+  border-radius: 5px;
 }
 .textfield:focus {
   border-bottom: 2px solid #00b224;
@@ -40,14 +67,14 @@
 .textfield:focus ~ .textlabel {
   font-size: 1.2rem;
   bottom: 2.5rem;
-  left: 0;
+  left: 10rem;
 }
 
 .textlabel-moveup {
   position: absolute;
   font-size: 1.2rem;
   bottom: 2.5rem;
-  left: 0;
+  left: 10rem;
   color: #3d3c3c;
   font-weight: 700;
   transition: all 0.3s ease-in-out;
@@ -55,7 +82,7 @@
 
 .textlabel {
   position: absolute;
-  left: 0;
+  left: 10rem;
   bottom: 0;
   font-size: 1.4rem;
   color: #3d3c3c;
@@ -124,16 +151,15 @@
 
 .search {
   position: relative;
-  font-size: 2rem;
-  font-weight: inherit;
+  font-size: 1.4rem;
 }
 .search__input {
-  padding: 0.5rem;
+  padding: 0.75rem;
   outline: none;
-  background-color: transparent;
+  border-radius: 5px;
+  background-color: #74ee8dad;
   color: #f2f2f2;
   border: none;
-  border-bottom: 2px solid white;
   font-size: inherit;
 }
 .search__input::placeholder {
@@ -143,11 +169,11 @@
 .search__icon {
   position: absolute;
   right: 0;
-  top: 0;
+  top: 3px;
 }
 
 .personal-feed-container {
-  margin-top: 2rem;
+  margin-top: 8rem;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
 }
@@ -172,6 +198,7 @@
   font-size: 1.4rem;
   margin-left: 1rem;
   align-self: center;
+  margin-right: 1rem;
 }
 .personal-feed-container .posts-container__item-header-image {
   height: 2rem;
@@ -191,7 +218,6 @@
   font-size: 1.4rem;
   font-weight: 500;
   font-family: Roboto, sans-serif;
-  color: #3d3c3c;
 }
 
 /*# sourceMappingURL=main.css.map */

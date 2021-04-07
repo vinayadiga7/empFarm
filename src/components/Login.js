@@ -1,21 +1,33 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 import {
   TextField,
   Button,
   InputAdornment,
   IconButton,
-  Grid,
 } from "@material-ui/core";
-import LoginScreenImages from "./LoginScreenImages";
+//import LoginScreenImages from "./LoginScreenImages";
 import { Visibility, VisibilityOff } from "@material-ui/icons";
 import { NavLink, useHistory } from "react-router-dom";
+import styled from "styled-components";
+import PlaceCenter from "./PlaceCenter";
+import ImageContainer from "./helpers/imageContainer";
+import { fetchUser } from "./actionCreaters";
+
+const StyledNavLink = styled(NavLink)`
+  color: #00b224;
+  font-size: 1.8rem;
+`;
 
 const useStyles = makeStyles({
   button: {
     background: "linear-gradient(60deg, #66ffa6, #00b224)",
     padding: "1.5rem",
-    fontSize: "1.6rem",
+    fontSize: "5rem",
+    "& .MuiButton-label": {
+      fontSize: "2rem",
+    },
   },
 
   textInput: {
@@ -37,9 +49,9 @@ const useStyles = makeStyles({
     },
   },
   companyName: {
-    fontWeight: 400,
+    fontWeight: 700,
     backgroundColor: "#00b224",
-    fontSize: "25px",
+    fontSize: "3rem",
     backgroundClip: "text",
     "-webkit-background-clip": "text",
     color: "transparent",
@@ -55,11 +67,15 @@ const Login = (props) => {
     showPassword: false,
   });
 
-  const history = useHistory();
-
   const submitForm = (e) => {
     e.preventDefault();
     //console.log("Form submitted!!");
+    //props.history.push("/feed");
+    const userData = {
+      username: values.username,
+      password: values.password,
+    };
+    props.fetchUser(userData);
     props.history.push("/feed");
   };
 
@@ -77,23 +93,19 @@ const Login = (props) => {
 
   const classes = useStyles();
   return (
-    <Grid container spacing={1}>
-      <Grid item sm={12} md={6} lg={6}>
-        <LoginScreenImages />{" "}
-      </Grid>
-      <Grid item sm={12} md={6} lg={6}>
+    <PlaceCenter>
+      <ImageContainer />
+      <div className="login-form-container">
         <form className="container" autoComplete="off" onSubmit={submitForm}>
           <div className={classes.companyName}>EmpFarm</div>
           <TextField
             id="filled-search"
             label="username"
-            type="email"
             name="username"
             variant="filled"
             className={classes.textInput}
             value={values.username}
             onChange={handleChange}
-            placeholder="abc@xyz.de"
           />
           <TextField
             id="filled-password"
@@ -120,13 +132,23 @@ const Login = (props) => {
             {" "}
             Login
           </Button>
-          <NavLink style={{ marginTop: "1rem" }} to="/signup">
+          <StyledNavLink style={{ marginTop: "1rem" }} to="/signup">
             New User? Create new account
-          </NavLink>
+          </StyledNavLink>
         </form>
-      </Grid>
-    </Grid>
+      </div>
+    </PlaceCenter>
   );
 };
 
-export default Login;
+const mapStateToProps = (state) => {
+  return state;
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchUser: (userData) => dispatch(fetchUser(userData)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

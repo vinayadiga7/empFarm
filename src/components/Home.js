@@ -11,7 +11,6 @@ class Home extends Component {
   render() {
     return (
       <Router>
-        <NavBar />
         <Switch>
           <Route path="/" exact component={Login} />
           <Route path="/feed" component={PersonalFeed} />

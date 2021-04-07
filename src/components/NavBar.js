@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { AppBar, Toolbar, IconButton, Typography } from "@material-ui/core";
 import ChatIcon from "@material-ui/icons/Chat";
@@ -6,10 +6,16 @@ import AccountCircleRoundedIcon from "@material-ui/icons/AccountCircleRounded";
 import HomeIcon from "@material-ui/icons/Home";
 import { makeStyles } from "@material-ui/core/styles";
 import Search from "./Search";
+import PorfileMenu from "./ProfileMenu";
+import ProfileMenu from "./ProfileMenu";
 
 const useStyles = makeStyles({
   appBar: {
     backgroundColor: "#09AF0F",
+    color: "#f2f2f2",
+    position: "fixed",
+    zIndex: 100,
+    top: 0,
   },
   menuIcons: {
     "& .MuiSvgIcon-root": {
@@ -36,6 +42,8 @@ const useStyles = makeStyles({
 });
 
 const NavBar = () => {
+  const [showProfileMenu, setShowProfileMenu] = useState(false);
+
   const classes = useStyles();
   return (
     <AppBar position="static" className={classes.appBar}>
@@ -59,11 +67,20 @@ const NavBar = () => {
             </Link>
           </IconButton>
 
-          <IconButton className={classes.menuIcons}>
-            <Link to="/profile">
-              <AccountCircleRoundedIcon />
-            </Link>
+          <IconButton
+            className={classes.menuIcons}
+            onClick={() => {
+              showProfileMenu
+                ? setShowProfileMenu(false)
+                : setShowProfileMenu(true);
+            }}
+          >
+            {/* <Link to="/profile">
+             
+            </Link> */}
+            <AccountCircleRoundedIcon />
           </IconButton>
+          {showProfileMenu ? <ProfileMenu /> : null}
         </div>
       </Toolbar>
     </AppBar>
