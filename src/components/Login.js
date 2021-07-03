@@ -76,7 +76,9 @@ const Login = (props) => {
       password: values.password,
     };
     props.fetchUser(userData);
-    props.history.push("/feed");
+    setTimeout(() => {
+      props.history.push("/feed");
+    }, 3000);
   };
 
   const handleToggle = () => {
@@ -142,7 +144,15 @@ const Login = (props) => {
 };
 
 const mapStateToProps = (state) => {
-  return state;
+  if (state.user) {
+    return {
+      idToken: state.user.idToken.jwtToken,
+    };
+  } else {
+    return {
+      idToken: "",
+    };
+  }
 };
 
 const mapDispatchToProps = (dispatch) => {

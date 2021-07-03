@@ -1,9 +1,10 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { connect } from "react-redux";
 import CircularProgress from "@material-ui/core/CircularProgress";
-import Posts from "./Posts";
 import NavBar from "./NavBar";
 import Modal from "./Modal";
+
+const Posts = React.lazy(() => import("./Posts"));
 
 const PersonalFeed = (props) => {
   return (
@@ -16,10 +17,13 @@ const PersonalFeed = (props) => {
       <NavBar />
       <div className="personal-feed-container">
         <div className="posts-container">
-          <Posts />
+          <Suspense fallback={<div>Loading...</div>}>
+            <Posts />
+          </Suspense>
         </div>
         <div>
-          <h1>Suggestions</h1>
+          <h1>Upload photo</h1>
+          <input type="file" id="photosupload" name="post a picture" />
         </div>
       </div>
     </>

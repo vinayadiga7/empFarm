@@ -6,6 +6,8 @@ import allReducers from "../reducers/index";
 const reducers = combineReducers({
   user: allReducers.userReducer,
   userRequestLoading: allReducers.userRequestLoadingReducer,
+  loadPersonalFeed: allReducers.loadPersonalFeedReducer,
+  images: allReducers.imagesReducer,
 });
 
 const store = createStore(

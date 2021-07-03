@@ -11,30 +11,33 @@ const useStyles = makeStyles({
   },
 });
 
+const URLPrefix = "https://empfarm-bucket-1.s3.us-east-1.amazonaws.com/";
+
 const Post = (props) => {
   const classes = useStyles();
-  const post = props.data;
-  const [likes, setLikes] = useState(post.likes);
+  console.log(props);
+  const photoUrl = URLPrefix + props.data.Key;
+  const [likes, setLikes] = useState(10);
 
   const incrementLikesHandler = () => {
     let incrementedLikes = likes + 1;
     setLikes(incrementedLikes);
   };
-
+  //console.log(photoUrl);
   return (
-    <div key={post.id} className="posts-container__item">
+    <div key={props.data.Ekey} className="posts-container__item">
       <div className="posts-container__item-header">
         <Avatar
           className={`${classes.orange} posts-container__item-header-image`}
         >
-          {post.user.username[0]}
+          {"V"}
         </Avatar>
         <span className="posts-container__item-header-text">
-          {post.user.username}
+          {"VinayAdiga"}
         </span>
       </div>
       <div className="posts-container__item-image-container">
-        <img className="posts-container__item-image-actual" src={post.image} />
+        <img className="posts-container__item-image-actual" src={photoUrl} />
       </div>
       <div>
         <IconButton onClick={incrementLikesHandler}>
@@ -43,9 +46,9 @@ const Post = (props) => {
       </div>
       <div>
         <span style={{ marginRight: "1rem", fontWeight: 700 }}>
-          {post.user.username}
+          {"VinayAdiga"}
         </span>
-        {post.caption.substr(0, 15)}
+        {/* {post.caption.substr(0, 15)} */}
       </div>
     </div>
   );

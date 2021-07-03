@@ -61,9 +61,13 @@ class Signup extends React.Component {
     // console.log(e);
     e.preventDefault();
     const user = { ...this.state };
-    //console.log(user);
-    CreateUser({ user });
-    this.props.history.push("/");
+
+    CreateUser({ user })
+      .then((data) => {
+        console.log(data);
+        this.props.history.push("/");
+      })
+      .catch((error) => console.log(error));
   }
 
   getBackToLoginPageHandler() {
