@@ -14,7 +14,7 @@ const useStyles = makeStyles({
     backgroundColor: "#09AF0F",
     color: "#f2f2f2",
     position: "fixed",
-    zIndex: 100,
+    zIndex: 200,
     top: 0,
   },
   menuIcons: {
