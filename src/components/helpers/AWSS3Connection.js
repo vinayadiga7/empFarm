@@ -5,6 +5,7 @@ const userPoolId = "us-east-1_MbArJOZj4";
 const identityPoolId = "us-east-1:abca93e9-23bf-439f-adbd-a29f1d7a760a";
 
 const BUCKET_NAME = "empfarm-bucket-1";
+const ALBUM_NAME = "treasure";
 
 export const viewAlbum = () => {
   //console.log(sessionStorage.getItem("idToken"));
@@ -81,4 +82,25 @@ export const viewAlbum = () => {
     //     });
     //   });
   });
+};
+
+export const addPhotoToTheAlbum = (files) => {
+  if (files.length < 1) {
+    alert("You have select the file first!!");
+  }
+  let file = files[0];
+  let filename = file.name;
+  let albumPhotosKey = encodeURIComponent(ALBUM_NAME) + "/";
+
+  let photoKey = albumPhotosKey + filename;
+
+  const upload = new AWS.S3.ManagedUpload({
+    params: {
+      Bucket: BUCKET_NAME,
+      Key: photoKey,
+      Body: file,
+    },
+  });
+
+  return upload.promise();
 };

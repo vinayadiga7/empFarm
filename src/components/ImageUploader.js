@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import Button from "@material-ui/core/Button";
 import SendIcon from "@material-ui/icons/Send";
 import Styled from "styled-components";
 import ImagePreview from "../images/Preview-icon.png";
+
+import { addPhotoToTheAlbum } from "./helpers/AWSS3Connection";
 
 const ButtonContainerDiv = Styled.div`
     position: absolute;
@@ -16,6 +18,7 @@ const ButtonContainerDiv = Styled.div`
 const ImageUploader = (props) => {
   const [file, setFile] = useState([ImagePreview]);
   const [appliedStyle, setAppliedStyle] = useState("");
+  const fileRef = useRef();
 
   const onClickHandler = (filterType) => {
     console.log(filterType);
@@ -49,6 +52,16 @@ const ImageUploader = (props) => {
     setFile(uploadedFile);
   };
 
+  const uploadThePhotoHandler = () => {
+    const files = fileRef.current.files;
+    addPhotoToTheAlbum(files)
+      .then(() => {
+        console.log("The image was uploaded successfully!!");
+        props.onClickHandler();
+      })
+      .catch((e) => console.log("The image was not uploaded!!"));
+  };
+
   return (
     <div className="image-uploader-container">
       <div className="image-uploader-container__content">
@@ -61,6 +74,7 @@ const ImageUploader = (props) => {
               id="browse-the-file"
               multiple
               onChange={onFileSelection}
+              ref={fileRef}
             />
             <label htmlFor="browse-the-file">
               <Button variant="contained" color="primary" component="span">
@@ -133,7 +147,12 @@ const ImageUploader = (props) => {
           </div>
         </div>
         <ButtonContainerDiv>
-          <Button className="button-styles" variant="contained" color="primary">
+          <Button
+            className="button-styles"
+            variant="contained"
+            color="primary"
+            onClick={uploadThePhotoHandler}
+          >
             Post
           </Button>
           <Button
